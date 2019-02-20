@@ -1,0 +1,150 @@
+#ch6_ex11.py
+#program name:rock, paper, scissors
+#program description:this program implements the rock, paper scissors game for player vs computer
+
+import random
+def main():
+	mode = int(input('***Choose Your Game Mode***\n Enter 1 for 1 player \tEnter 2 for 2 players'))
+	choice(mode)
+	
+def main1():
+	computer = 0
+	player = 0
+	while computer == player:
+		computer = random.randint(1,3)
+		player = getChoice()
+		winner = whoWon(computer, player)
+		showWinner(computer, player, winner)
+		playAgain = 'y'
+		while playAgain.lower() == 'y':
+			computer = 0
+			player = 0
+			while computer == player:
+				computer = random.randint(1,3)
+				player = getChoice()m
+				winner, message = whoWon(computer, player)
+				showWinner(computer, player, winner, message)
+		
+#function to get input from the player
+def getChoice():
+	choice = input('Enter rock, paper, or scissors:')
+	while choice.lower() not in ['rock','paper','scissors']:
+		choice = input('You must enter one of these choices- rock, paper, or scissors:')
+	if choice == 'rock':
+		return 1
+	elif choice == 'paper':
+		return 2
+	else:
+		return 3
+	return int(input('Enter 1 for rock, 2 for paper, and 3 for scissors:'))
+	
+#function to compare the players choice and the computers choice and determines who wins and returs the result
+def whoWon(computer, player):
+	if computer == player:
+		return 0
+	elif computer == 1:
+		if player == 2:
+			return 2
+		else:
+			return 1
+	elif computer == 2:
+		if player == 1:
+			return 2
+		else:
+			return 3
+	elif computer == 3:
+		if player == 1:
+			return 1
+		else:
+			return 3
+
+#function to display the results
+def showWinner(computer, player, winner):
+	print('Computer chose:',choiceString(computer))
+	print('Player chose:',choiceString(player))
+	if computer == winner:
+		print('Computer Wins!')
+	elif player == winner:
+		print('Player Wins!')
+	else:
+		print('No Winner')
+		
+#function to change the numbers to corresponding move
+def choiceString(computer):
+	if computer == 1:
+		return 'rock'
+	elif computer == 2:
+		return 'paper'
+	else:
+		return 'scissors'
+		
+def choiceString(player):
+	if player == 1:
+		return 'rock'
+	elif player == 2:
+		return 'paper'
+	else:
+		return 'scissors'
+
+def choice(mode):
+	if mode == 1:
+		main1()
+	else:
+		main2()
+		
+def main2():
+	player1 = 0
+	player2 = 0
+	while player1 == player2:
+		player1 = getChoice()
+		player2 = getChoice()
+		winner = whoWon(player1, player2)
+		showWinner(player1, player2, winner)
+		
+def whoWon(player1, player2):
+	if player1 == player2:
+		return 0
+	elif player1 == 1:
+		if player2 == 2:
+			return 2
+		else:
+			return 1
+	elif player1 == 2:
+		if player2 == 1:
+			return 2
+		else:
+			return 3
+	elif player1 == 3:
+		if player2 == 1:
+			return 1
+		else:
+			return 3
+			
+def showWinner(player1, player2, winner):
+	print('Player 1 chose:',choiceString(player1))
+	print('Player 2 chose:',choiceString(player2))
+	if player1 == winner:
+		print('Player 1 Wins!')
+	elif player2 == winner:
+		print('Player 2 Wins!')
+	else:
+		print('No Winner')
+		
+def choiceString(player1):
+	if player1 == 1:
+		return 'rock'
+	elif player1 == 2:
+		return 'paper'
+	else:
+		return 'scissors'
+		
+def choiceString(player2):
+	if player2 == 1:
+		return 'rock'
+	elif player2 == 2:
+		return 'paper'
+	else:
+		return 'scissors'
+		
+#call main
+main()
